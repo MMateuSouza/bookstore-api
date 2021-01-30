@@ -44,6 +44,7 @@ class Sale(Base):
     _errors = []
 
     def __init__(self, data):
+        self._errors = []
         if 'customer_id' in data:
             self.customer_id = data['customer_id']
 

@@ -17,6 +17,7 @@ class Customer(Base):
     # is_active = Column(Boolean, default=True, nullable=False)
 
     def __init__(self, data):
+        self._errors = []
         if 'first_name' in data:
             self.first_name = data['first_name']
         if 'last_name' in data:
@@ -40,7 +41,7 @@ class Customer(Base):
             self._errors.append({'last_name': 'Este campo é obrigatório.'})
         if not self.email:
             self._errors.append({'email': 'Este campo é obrigatório.'})
-        elif self.email and Customer.query.filter(Customer.email == self.email, Customer.id != self.id).first():
+        if self.email and Customer.query.filter(Customer.email == self.email, Customer.id != self.id).first():
             self._errors.append({'email': 'O e-mail informado já encontra-se cadastrado.'})
 
         return True if not len(self._errors) else False

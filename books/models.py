@@ -19,6 +19,7 @@ class Book(Base):
     _errors = []
 
     def __init__(self, data):
+        self._errors = []
         if 'title' in data:
             self.title = data['title']
         if 'author' in data:
