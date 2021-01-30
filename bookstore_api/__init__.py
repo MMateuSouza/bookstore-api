@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from dotenv import load_dotenv
 
 from bookstore_api.database import db_session
@@ -15,6 +15,17 @@ app.config.from_object(configuration_object)
 
 app.register_blueprint(books, url_prefix='/books')
 app.register_blueprint(customers, url_prefix='/customers')
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({'error': 'A URL `{}` nao e valida.'.format(request.path)}), 404
+
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+    return jsonify({'error': '[{}] metodo de requisicao invalido para a seguinte URL `{}`'.format(request.method,
+                                                                                                  request.path)}), 405
 
 
 @app.teardown_appcontext
