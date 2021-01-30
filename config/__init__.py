@@ -5,6 +5,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     DATABASE_URI = os.getenv('DATABASE_URI')
+    MAX_BOOKS_PER_SALE = os.getenv('MAX_BOOKS_PER_SALE')
 
 
 class ProductionConfig(Config):

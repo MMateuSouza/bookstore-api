@@ -6,6 +6,7 @@ from config import get_configuration_class
 
 from books import books
 from customers import customers
+from sales import sales
 
 load_dotenv()
 configuration_object = get_configuration_class()
@@ -15,6 +16,7 @@ app.config.from_object(configuration_object)
 
 app.register_blueprint(books, url_prefix='/books')
 app.register_blueprint(customers, url_prefix='/customers')
+app.register_blueprint(sales, url_prefix='/sales')
 
 
 @app.errorhandler(404)
