@@ -25,7 +25,7 @@ class Book(db.Model):
         if 'author' in data:
             self.author = data['author']
         if 'isbn' in data:
-            self.isbn = data['isbn']
+            self._isbn = data['isbn']
         if 'edition' in data:
             self.edition = data['edition']
         if 'year' in data:
@@ -49,7 +49,7 @@ class Book(db.Model):
             self._errors.append({'title': 'Este campo é obrigatório'})
         if not self.author:
             self._errors.append({'author': 'Este campo é obrigatório'})
-        if not self.isbn:
+        if not self._isbn:
             self._errors.append({'isbn': 'Este campo é obrigatório'})
         if not self.edition:
             self._errors.append({'edition': 'Este campo é obrigatório'})
@@ -59,10 +59,14 @@ class Book(db.Model):
             self._errors.append({'publishing_company': 'Este campo é obrigatório'})
         if not self.price:
             self._errors.append({'price': 'Este campo é obrigatório'})
-        elif self.isbn and Book.query.filter(Book.isbn == self.isbn, Book.id != self.id).first():
-            self._errors.append({'isbn': 'O isbn informado já encontra-se cadastrado.'})
-        elif not validate_isbn(self.isbn):
-            self._errors.append({'isbn': 'O isbn informado é inválido.'})
+        if self._isbn:
+            if validate_isbn(self._isbn):
+                if Book.query.filter(Book.isbn == self._isbn, Book.id != self.id).first():
+                    self._errors.append({'isbn': 'O isbn informado já encontra-se cadastrado.'})
+                else:
+                    self.isbn = self._isbn
+            else:
+                self._errors.append({'isbn': 'O isbn informado é inválido.'})
 
         return True if not len(self._errors) else False
 
