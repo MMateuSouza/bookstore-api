@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 
 from bookstore_api import db
+from customers.validators import validate_email
 
 
 class Customer(db.Model):
@@ -42,6 +43,8 @@ class Customer(db.Model):
             self._errors.append({'email': 'Este campo é obrigatório.'})
         if self.email and Customer.query.filter(Customer.email == self.email, Customer.id != self.id).first():
             self._errors.append({'email': 'O e-mail informado já encontra-se cadastrado.'})
+        if self.email and not validate_email(self.email):
+            self._errors.append({'email': 'O e-mail informado é inválido.'})
 
         return True if not len(self._errors) else False
 
