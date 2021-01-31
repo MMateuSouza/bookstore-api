@@ -20,6 +20,7 @@ class Book(db.Model):
 
     def __init__(self, data):
         self._errors = []
+        self._isbn = self.isbn
         if 'title' in data:
             self.title = data['title']
         if 'author' in data:

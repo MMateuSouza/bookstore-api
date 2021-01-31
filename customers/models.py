@@ -15,6 +15,7 @@ class Customer(db.Model):
 
     def __init__(self, data):
         self._errors = []
+        self._email = self.email
         if 'first_name' in data:
             self.first_name = data['first_name']
         if 'last_name' in data:

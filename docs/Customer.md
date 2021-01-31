@@ -131,7 +131,7 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
 
 
 
-* **Data Params**
+* **Data Params** <br />
     Exemplo JSON de Requisição:
   ```json
     {
@@ -141,11 +141,11 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
     }
   ```
     Dicionário de Dados:
-    | # | Field      | Description          | Required | Unique |
-    |:-:|------------|----------------------|:--------:|:------:|
-    | 1 | first_name | Nome do Cliente      |   true   |  false |
-    | 2 | last_name  | Sobrenome do Cliente |   true   |  false |
-    | 3 | email      | E-mail do Cliente    |   true   |  true  |
+  | # | Field      | Description          | DataType | Required | Unique |
+  |:-:|------------|----------------------|:--------:|:--------:|:------:|
+  | 1 | first_name | Nome do Cliente      |  String  |   true   |  false |
+  | 2 | last_name  | Sobrenome do Cliente |  String  |   true   |  false |
+  | 3 | email      | E-mail do Cliente    |  String  |   true   |  true  |
 
 * **Success Response:**
   * **Code:** 200 <br />
@@ -214,7 +214,7 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
 
 **Editar um Cliente**
 ----
-  Retorna um cliente atualizado com os parâmetros informados.
+  Retorna um JSON com o cliente atualizado com os parâmetros informados.
 
 * **URL**
 
@@ -233,7 +233,7 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
    `id=[integer]`
 
 
-* **Data Params**
+* **Data Params** <br />
     Exemplo JSON de Requisição:
   ```json
     {
@@ -243,11 +243,11 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
     }
   ```
     Dicionário de Dados:
-    | # | Field      | Description          | Required | Unique |
-    |:-:|------------|----------------------|:--------:|:------:|
-    | 1 | first_name | Nome do Cliente      |   false   |  false |
-    | 2 | last_name  | Sobrenome do Cliente |   false   |  false |
-    | 3 | email      | E-mail do Cliente    |   false   |  true  |
+  | # | Field      | Description          | DataType | Required | Unique |
+  |:-:|------------|----------------------|:--------:|:--------:|:------:|
+  | 1 | first_name | Nome do Cliente      |  String  |   false  |  false |
+  | 2 | last_name  | Sobrenome do Cliente |  String  |   false  |  false |
+  | 3 | email      | E-mail do Cliente    |  String  |   false  |  true  |
 
 * **Success Response:**
   * **Code:** 200 <br />
@@ -310,11 +310,12 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
 
 * **Notes:**
 
-   É necessário submeter apenas o campo que se deseja fazer alteração. Caso um determinado campo seja enviado com _String_ vazia, será retornado uma mensagem de erro dizendo que este campo é obrigatório.
+   É necessário submeter apenas os campos que se desejam fazer alterações. Caso um determinado campo seja enviado com _String_ vazia, será retornado uma mensagem de erro dizendo que este campo é obrigatório.
 
 
 **Excluir um Cliente**
 ----
+  É efetuado a exclusão de um cliente e retornado um objeto JSON com as dele.
 
 * **URL**
 
