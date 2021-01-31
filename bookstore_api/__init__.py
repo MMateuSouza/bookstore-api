@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from os import getenv
@@ -6,6 +7,7 @@ from os import getenv
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 FLASK_ENV = getenv('FLASK_ENV')
 if FLASK_ENV == 'development':
     app.config.from_object('config.DevelopmentConfig')
