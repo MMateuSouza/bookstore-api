@@ -13,9 +13,6 @@ class Customer(db.Model):
 
     _errors = []
 
-    # creation_date = Column(DateTime, default=datetime.now(), nullable=False)
-    # is_active = Column(Boolean, default=True, nullable=False)
-
     def __init__(self, data):
         self._errors = []
         if 'first_name' in data:
