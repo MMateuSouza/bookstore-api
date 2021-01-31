@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, Float, SmallInteger
 
-from bookstore_api.database import Base
+from bookstore_api import db
 from books.validators import validate_isbn
 
 
-class Book(Base):
+class Book(db.Model):
     __tablename__ = 'tbl_books'
     id = Column(Integer, autoincrement=True, primary_key=True)
     title = Column(String(120), nullable=False)

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from bookstore_api import db_session
+from bookstore_api import db
 from books.models import Book
 
 books = Blueprint('books', __name__)
@@ -21,8 +21,8 @@ def books_view(id=None):
                 book = Book(data)
 
                 if book.is_valid():
-                    db_session.add(book)
-                    db_session.commit()
+                    db.session.add(book)
+                    db.session.commit()
                     return jsonify({'data': book.as_dict()})
                 else:
                     return jsonify({'errors': book.get_errors()})
@@ -41,7 +41,7 @@ def books_view(id=None):
                 book.update(data)
 
                 if book.is_valid():
-                    db_session.commit()
+                    db.session.commit()
                     return jsonify({'data': book.as_dict()})
                 else:
                     return jsonify({'errors': book.get_errors()})
@@ -49,8 +49,8 @@ def books_view(id=None):
             return jsonify({'error': {'message': 'É esperado um objeto JSON.'}})
 
         elif request.method == 'DELETE':
-            db_session.delete(book)
-            db_session.commit()
-            return jsonify({'data': {}})
+            db.session.delete(book)
+            db.session.commit()
+            return jsonify({'data': book.as_dict(), 'message': 'Removido com sucesso.'})
 
     return jsonify({'error': {'message': 'Id não encontrado.'}})

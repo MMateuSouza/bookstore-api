@@ -1,15 +1,14 @@
 from datetime import datetime
+from flask import current_app
 from sqlalchemy import Column, DateTime, Float, func, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 
-from config import Config
-
-from bookstore_api.database import Base
+from bookstore_api import db
 from books.models import Book
 from customers.models import Customer
 
 
-class SaleBook(Base):
+class SaleBook(db.Model):
     __tablename__ = 'tbl_sales_books'
     id = Column(Integer, autoincrement=True, primary_key=True)
     book_id = Column(Integer, ForeignKey(Book.id))
@@ -29,7 +28,7 @@ class SaleBook(Base):
         return {field.name: getattr(self, field.name) for field in self.__table__.columns}
 
 
-class Sale(Base):
+class Sale(db.Model):
     __tablename__ = 'tbl_sales'
     id = Column(Integer, autoincrement=True, primary_key=True)
     customer_id = Column(Integer, ForeignKey(Customer.id), nullable=False)
@@ -70,7 +69,7 @@ class Sale(Base):
             self._errors.append({'customer_id': 'Este campo é obrigatório.'})
 
         if not self._tmp_list_of_books_ids:
-            self._errors.append({'books': 'Este campo é obrigatório e/ou é esperado uma lista de inteiros. Ela não pode estar vazia. Ex.: [1, 2, ..., 10]'})
+            self._errors.append({'books_ids': 'Este campo é obrigatório e/ou é esperado uma lista de inteiros. Ela não pode estar vazia. Ex.: [1, 2, ..., 10]'})
 
         if self.customer_id and not Customer.query.get(self.customer_id):
             self._errors.append({'customer_id': 'Id não encontrado.'})
@@ -90,8 +89,8 @@ class Sale(Base):
             if len(error_obj['books_ids']) > 0:
                 self._errors.append(error_obj)
 
-        if self.books and len(self.books) > int(Config.MAX_BOOKS_PER_SALE):
-            self._errors.append({'books_quantity': 'A quantidade máxima de livros distintos por compra foi atingido. O máximo é/são {}.'.format(Config.MAX_BOOKS_PER_SALE)})
+        if self.books and len(self.books) > int(current_app.config['MAX_BOOKS_PER_SALE']):
+            self._errors.append({'books_quantity': 'A quantidade máxima de livros distintos por compra foi atingido. O máximo é/são {}.'.format(current_app.config['MAX_BOOKS_PER_SALE'])})
 
         return True if not len(self._errors) else False
 

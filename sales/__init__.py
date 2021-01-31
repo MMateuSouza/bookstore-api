@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from bookstore_api.database import db_session
+from bookstore_api import db
 from sales.models import Sale
 
 sales = Blueprint('sales', __name__)
@@ -26,8 +26,8 @@ def index(id=None):
 
             if sale.is_valid():
                 sale.apply_discount()
-                db_session.add(sale)
-                db_session.commit()
+                db.session.add(sale)
+                db.session.commit()
                 return jsonify({'data': sale.as_dict()})
             else:
                 return jsonify({'errors': sale.get_errors()})

@@ -1,10 +1,9 @@
-from datetime import datetime
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String
 
-from bookstore_api.database import Base
+from bookstore_api import db
 
 
-class Customer(Base):
+class Customer(db.Model):
     __tablename__ = 'tbl_customers'
     id = Column(Integer, autoincrement=True, primary_key=True)
     first_name = Column(String(50), nullable=False)

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from bookstore_api import db_session
+from bookstore_api import db
 from customers.models import Customer
 
 customers = Blueprint('customers', __name__)
@@ -21,8 +21,8 @@ def customers_view(id=None):
                 customer = Customer(data)
 
                 if customer.is_valid():
-                    db_session.add(customer)
-                    db_session.commit()
+                    db.session.add(customer)
+                    db.session.commit()
                     return jsonify({'data': customer.as_dict()})
                 else:
                     return jsonify({'errors': customer.get_errors()})
@@ -41,7 +41,7 @@ def customers_view(id=None):
                 customer.update(data)
 
                 if customer.is_valid():
-                    db_session.commit()
+                    db.session.commit()
                     return jsonify({'data': customer.as_dict()})
                 else:
                     return jsonify({'errors': customer.get_errors()})
@@ -49,8 +49,8 @@ def customers_view(id=None):
             return jsonify({'error': {'message': 'É esperado um objeto JSON.'}})
 
         elif request.method == 'DELETE':
-            db_session.delete(customer)  # Verificar futuramente a possibilidade de aplicar-se a deleção lógica.
-            db_session.commit()
-            return jsonify({'data': {}})
+            db.session.delete(customer)
+            db.session.commit()
+            return jsonify({'data': customer.as_dict(), 'message': 'Removido com sucesso.'})
 
     return jsonify({'error': {'message': 'Id não encontrado.'}})
