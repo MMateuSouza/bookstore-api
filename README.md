@@ -1,6 +1,6 @@
 # Bookstore API
 
-**Bookstore API** é uma API desenvolvida utilizando a linguagem de programação _Python_, o _Microframework Flask_, e o SGBD _PostgreSQL_. O seu objetivo é ilustrar o contexto de uma Livraria, onde temos Clientes, Livros e Vendas, ou seja, esta aplicação provê uma interface para leitura, cadastro, edição e exclusão de informações pertinentes à essas entidades.
+**Bookstore API** é uma API desenvolvida utilizando a linguagem de programação _Python_, o _Microframework Flask_, e o SGBD _PostgreSQL_. O seu objetivo é ilustrar o contexto de uma Livraria, onde temos Clientes, Livros e Vendas, ou seja, esta aplicação provê uma interface para leitura, cadastro, edição e exclusão de informações pertinentes a essas entidades.
 
 ---
 
@@ -39,7 +39,7 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
    ```
     `Bookstore` é o nome do seu ambiente virtual _Python_, pode ser qualquer nome que você deseje.
 
-   Note que foi criado uma pasta chamada `Bookstore` no diretório.
+   Observe que foi criada uma pasta chamada `Bookstore` no diretório.
 
 
 5. E ativar o ambiente virtual _Python_ criado, para isso:
@@ -100,7 +100,7 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
 
    8.1. Linux:
    
-   Alterar o usuário corrente para o usuário posgres, caso solicite a senha, informe-a.
+   Alterar o usuário corrente para o usuário postgres, caso solicite a senha, informe-a.
    ```shell
    sudo su postgres;
    ```
@@ -157,55 +157,55 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
    
 10. Após efetuado a cópia, utilizando um editor de texto de sua preferência abra o arquivo e configure de acordo com a tabela a seguir:
 
-   | # | Field              | Description                                                                                                                                                                                               | DataType | Required |
-   |:-:|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|:--------:|
-   | 1 | FLASK_ENV          | Define em qual ambiente a aplicação estará funcionando. Dependendo do valor existem alguns recursos que facilitam o desenvolvimento ou teste. Possíveis valores: `development`, `production` e `testing`. |  String  |   true   |
-   | 2 | DATABASE_URI       | Especifica a URL de conexão com o banco de dados. Basta seguir o padrão: `postgres://[user]:[password]@[hostname]:[port]/[database]`.                                                                     |  String  |   true   |
-   | 3 | MAX_BOOKS_PER_SALE | Define qual a quantidade de livros distintos podem ser adquiridos por cada Compra. De acordo com a regra de negócio do projeto, o padrão é `10`.                                                          |  Integer |   true   |
+      | # | Field              | Description                                                                                                                                                                                               | DataType | Required |
+      |:-:|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|:--------:|
+      | 1 | FLASK_ENV          | Define em qual ambiente a aplicação estará funcionando. Dependendo do valor existem alguns recursos que facilitam o desenvolvimento ou teste. Possíveis valores: `development`, `production` e `testing`. |  String  |   true   |
+      | 2 | DATABASE_URI       | Especifica a URL de conexão com o banco de dados. Basta seguir o padrão: `postgres://[user]:[password]@[hostname]:[port]/[database]`.                                                                     |  String  |   true   |
+      | 3 | MAX_BOOKS_PER_SALE | Define qual a quantidade de livros distintos podem ser adquiridos por cada Compra. De acordo com a regra de negócio do projeto, o padrão é `10`.                                                          |  Integer |   true   |
 
 11. Depois de tudo configurado, basta executar o seguinte passo a passo para criação das tabelas do banco e inserção da carga inicial do banco:
-
-   11.1. Acessar o _shell_ iterativo do _Python_:
-   ```shell
-   python
-   ```
+    
+    11.1. Acessar o _shell_ iterativo do _Python_:
+    ```shell
+    python
+    ```
    
-   11.2. Importar a instância do _SQLAlchemy_ da aplicação:
-   
-   ```python
-   from bookstore_api import db
-   ```
-   11.3 Criar todas as tabelas necessárias da aplicação:
-   
-   ```python
-   from bookstore_api import db
-   ```
+    11.2. Importar a instância do _SQLAlchemy_ da aplicação:
+    
+    ```python
+    from bookstore_api import db
+    ```
+    11.3 Criar todas as tabelas necessárias da aplicação:
+    
+    ```python
+    from bookstore_api import db
+    ```
 
 12. Para executar a API, você precisa exportar uma variável de ambiente que diga ao Flask onde encontrar a instância da aplicação, para isso:
-
-   12.1. Linux:
-   ```shell
-   export FLASK_APP=bookstore_api
-   ```
-   12.2. Windows:
-   ```shell
-   set FLASK_APP=bookstore_api
-   ```
+    
+    12.1. Linux:
+    ```shell
+    export FLASK_APP=bookstore_api
+    ```
+    12.2. Windows:
+    ```shell
+    set FLASK_APP=bookstore_api
+    ```
 
 13. Para executar a aplicação basta executar o seguinte comando:
-
-   ```shell
-   flask run
-   ```
-   OU, para rodar um servidor local:
-   ```shell
-   flask run --host=0.0.0.0
-   ```
-   
-   Caso tenha dado tudo certo, você terá um _feedback_ parecido com esse:
-
-   ```shell
-   (Bookstore) user@DESKTOP-4K7A3QK:~/bookstore-api$ flask run --host=0.0.0.0
+    
+    ```shell
+    flask run
+    ```
+    OU, para rodar um servidor local:
+    ```shell
+    flask run --host=0.0.0.0
+    ```
+    
+    Caso tenha dado tudo certo, você terá um _feedback_ parecido com esse:
+    
+    ```shell
+    (Bookstore) user@DESKTOP-4K7A3QK:~/bookstore-api$ flask run --host=0.0.0.0
     * Serving Flask app "bookstore_api" (lazy loading)
     * Environment: development
     * Debug mode: on
@@ -213,7 +213,7 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
     * Restarting with stat
     * Debugger is active!
     * Debugger PIN: 259-854-158
-   ```
+    ```
    
 ---
 
