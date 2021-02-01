@@ -468,7 +468,7 @@ Retorna um JSON contendo todas as Vendas cadastradas no banco de dados.
 
     | # | Field         | Description                                                                                                             | DataType | Required | Unique |
     |:-:|---------------|-------------------------------------------------------------------------------------------------------------------------|:--------:|:--------:|:------:|
-    | 1 | subtotal      | O valor final da Compra                                                                                                 |   Float  |   false  |  false |
+    | 1 | subtotal      | O valor da Compra (Somatório de todos os livros na compra)                                                              |   Float  |   false  |  false |
     | 2 | discount      | O valor do desconto baseado no histórico de Compras do Cliente. (Regra de negócio especificada na proposta do projeto). |   Float  |   false  |  false |
     | 3 | grand_total   | O valor final da Compra, ou seja, o subtotal com o desconto aplicado.                                                   |   Float  |   false  |  false |
     | 4 | purchase_date | A data e hora de quando foi efetuado o registro da Compra                                                               | DateTime |   false  |  false |
