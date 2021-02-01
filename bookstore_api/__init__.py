@@ -25,6 +25,13 @@ app.register_blueprint(books, url_prefix='/books')
 app.register_blueprint(customers, url_prefix='/customers')
 app.register_blueprint(sales, url_prefix='/sales')
 
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({'error': {
+        'message': str(error),
+        'url': request.path,
+    }}), 400
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({'error': 'A URL `{}` nao e valida.'.format(request.path)}), 404
