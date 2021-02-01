@@ -2,6 +2,38 @@
 
 **Bookstore API** é uma API desenvolvida utilizando a linguagem de programação _Python_, o _Microframework Flask_, e o SGBD _PostgreSQL_. O seu objetivo é ilustrar o contexto de uma Livraria, onde temos Clientes, Livros e Vendas, ou seja, esta aplicação provê uma interface para leitura, cadastro, edição e exclusão de informações pertinentes a essas entidades.
 
+## Estrutura do Projeto
+
+```shell
+├── .env_exmple
+├── .gitignore
+├── README.md
+├── books
+│   ├── __init__.py
+│   ├── models.py
+│   └── validators.py
+├── bookstore_api
+│   ├── __init__.py
+├── config
+│   ├── __init__.py
+├── customers
+│   ├── __init__.py
+│   ├── models.py
+│   └── validators.py
+├── docs
+│   ├── Book.md
+│   ├── Customer.md
+│   └── Sale.md
+├── initial_data
+│   ├── __init__.py
+│   ├── tbl_books.csv
+│   └── tbl_customers.csv
+├── sales
+│   ├── __init__.py
+│   └── models.py
+└── setup.py
+```
+
 ---
 
 ## Pré-requisitos
@@ -235,3 +267,32 @@ A aplicação está divida em três módulos: a Clientes, a Livros e a Vendas. P
 - **Módulo Clientes:** [Clique aqui](docs/Customer.md), caso queira conhecer como criar, editar, listar e excluir um cliente.
 - **Módulo Livros:** [Clique aqui](docs/Book.md), caso queira conhecer como criar, editar, listar e excluir um livro.
 - **Módulo Vendas:** [Clique aqui](docs/Sale.md), caso queira conhecer como criar e listar vendas.
+
+### Possíveis Erros nas Requisições:
+
+* **Error 400**
+
+    ```javascript
+    {
+        "error": {
+            "message": "400 Bad Request: Failed to decode JSON object: Expecting value: line 3 column 21 (char 46)",
+            "url": "/<REQUEST_URL>/"
+        }
+    }    
+    ```
+
+* **Error 404**
+
+    ```javascript
+    {
+        "error": "A URL <REQUEST_URL> nao e valida."
+    }
+    ```
+  
+* **Error 405**
+
+    ```javascript
+    {
+        "error": "[<METHOD>] metodo de requisicao invalido para a seguinte URL /<REQUEST_URL>/"
+    }
+    ```
