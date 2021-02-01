@@ -96,7 +96,7 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
    (Bookstore) C:\Users\User\Documents\bookstore-api>   
    ```
    
-8. Temos todas as dependências _Python_ configuradas para o projeto, agora o próximo passo é acessar o _PostgreSQL_ e criar um usuário e um banco de dados para a aplicação. Para isso:
+8. Temos todas as dependências _Python_ configuradas para o projeto, agora o próximo passo é acessar o _PostgreSQL_ e criar um usuário bem como um banco de dados para a aplicação. Para isso:
 
    8.1. Linux:
    
@@ -165,7 +165,7 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
 
 11. Depois de tudo configurado, basta executar o seguinte passo a passo para criação das tabelas do banco e inserção da carga inicial do banco:
     
-    11.1. Acessar o _shell_ iterativo do _Python_:
+    11.1. Acessar o _shell_ interativo do _Python_:
     ```shell
     python
     ```
@@ -178,7 +178,18 @@ O projeto foi desenvolvido utilizando o S.O. Ubuntu 18.04.5, caso você esteja u
     11.3 Criar todas as tabelas necessárias da aplicação:
     
     ```python
-    from bookstore_api import db
+    db.create_all()
+    ```
+    
+    11.4. Importar a função de inserção de dados iniciais:
+    
+    ```python
+    from initial_data import insert
+    ```
+    11.5 Executar método de inserção:
+    
+    ```python
+    insert()
     ```
 
 12. Para executar a API, você precisa exportar uma variável de ambiente que diga ao Flask onde encontrar a instância da aplicação, para isso:

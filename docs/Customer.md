@@ -311,12 +311,12 @@ Retorna um JSON contendo todos os Clientes cadastrados no banco de dados.
 
 * **Notes:**
 
-   É necessário submeter apenas os campos que se desejam fazer alterações. Caso um determinado campo seja enviado com _String_ vazia, será retornado uma mensagem de erro dizendo que este campo é obrigatório.
+   É necessário submeter apenas os campos que se desejam fazer alterações. Caso um determinado campo seja enviado com _String_ vazia, será retornada uma mensagem de erro dizendo que este campo é obrigatório.
 
 
 **Excluir um Cliente**
 ----
-  É efetuado a exclusão de um cliente e retornado um objeto JSON com as dele.
+  É efetuada a exclusão de um cliente e retornado um objeto JSON com as dele.
 
 * **URL**
 
