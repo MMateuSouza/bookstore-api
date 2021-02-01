@@ -15,12 +15,13 @@ class Customer(db.Model):
 
     def __init__(self, data):
         self._errors = []
+        self._email = self.email
         if 'first_name' in data:
             self.first_name = data['first_name']
         if 'last_name' in data:
             self.last_name = data['last_name']
         if 'email' in data:
-            self.email = data['email']
+            self._email = data['email']
 
     def update(self, data):
         self.__init__(data)
@@ -36,12 +37,16 @@ class Customer(db.Model):
             self._errors.append({'first_name': 'Este campo é obrigatório.'})
         if not self.last_name:
             self._errors.append({'last_name': 'Este campo é obrigatório.'})
-        if not self.email:
+        if not self._email:
             self._errors.append({'email': 'Este campo é obrigatório.'})
-        if self.email and Customer.query.filter(Customer.email == self.email, Customer.id != self.id).first():
-            self._errors.append({'email': 'O e-mail informado já encontra-se cadastrado.'})
-        if self.email and not validate_email(self.email):
-            self._errors.append({'email': 'O e-mail informado é inválido.'})
+        if self._email:
+            if validate_email(self._email):
+                if Customer.query.filter(Customer.email == self._email, Customer.id != self.id).first():
+                    self._errors.append({'email': 'O e-mail informado já encontra-se cadastrado.'})
+                else:
+                    self.email = self._email
+            else:
+                self._errors.append({'email': 'O e-mail informado é inválido.'})
 
         return True if not len(self._errors) else False
 
